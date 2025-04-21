@@ -51,6 +51,7 @@ type NftListed @entity(immutable: true) {
   tokenId: BigInt! # uint256
   price: BigInt! # uint256
   seller: Bytes! # address
+  tokenURI: String! # string
   blockNumber: BigInt!
   blockTimestamp: BigInt!
   transactionHash: Bytes!

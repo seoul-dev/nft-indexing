@@ -103,6 +103,9 @@ export function handleNftListed(event: NftListedEvent): void {
   entity.blockTimestamp = event.block.timestamp
   entity.transactionHash = event.transaction.hash
 
+  let contract = Marketplace.bind(event.address)
+  entity.tokenURI = contract.tokenURI(event.params.tokenId)
+
   entity.save()
 }
 
