@@ -5,7 +5,8 @@ import {
   NftBought as NftBoughtEvent,
   NftCreated as NftCreatedEvent,
   NftListed as NftListedEvent,
-  Transfer as TransferEvent
+  Transfer as TransferEvent,
+  Marketplace
 } from "../generated/Marketplace/Marketplace"
 import {
   Approval,
@@ -112,6 +113,9 @@ export function handleTransfer(event: TransferEvent): void {
   entity.from = event.params.from
   entity.to = event.params.to
   entity.tokenId = event.params.tokenId
+  
+  let contract = Marketplace.bind(event.address)
+  entity.tokenURI = contract.tokenURI(event.params.tokenId)
 
   entity.blockNumber = event.block.number
   entity.blockTimestamp = event.block.timestamp
